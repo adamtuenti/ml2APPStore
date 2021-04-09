@@ -1,0 +1,80 @@
+<app-header nombre="locales"></app-header>
+
+<ion-content>
+
+  <ion-segment color="tertiary" value="cartilla">
+
+    <ion-segment-button value="anuncios" [routerLink]="['/detalle-local',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="information-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Datos</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="cartilla" [routerLink]="['/productos-locales',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="book-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Cartilla</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="grupos" [routerLink]="['/comentarios-local',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="chatbubbles-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Comentarios</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <form #form="ngForm" (ngSubmit)="UpdateProducto(form)">
+    <ion-list>   
+        
+  
+
+ 
+      
+
+
+
+     
+
+      
+      
+      <ion-item>
+
+                  <ion-img id="blah" [src]="image" alt="your image" style="margin-top:7.5px;margin-bottom: 7.5px;height: 350px;width: 350px;"></ion-img>
+         
+        </ion-item>
+
+
+
+      <ion-item>
+        <ion-label><ion-icon name="cloud-upload-outline"></ion-icon>  <ion-text style='margin-left:7.5px'>Cambiar foto</ion-text></ion-label>
+        <ion-input id="myFileInput" (change)="readURL($event);" accept="image/*" placeholder="archivo" name="archivo" type='file' ngModel value="{{file}}"></ion-input>
+      
+     
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="cash-outline" color="success" size='large' style = 'margin-right: 7.5px;'></ion-icon>
+        <ion-input value="{{producto.Precio}}" name="precio" required type='text' ngModel></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="information-circle-outline" color="success" size='large' style = 'margin-right: 7.5px;'></ion-icon>
+        <ion-input value="{{producto.Titulo}}" name="titulo" required type='text' ngModel></ion-input>
+      </ion-item>
+
+
+      
+
+
+    </ion-list> 
+
+    <div class="ion-padding" align="center">
+      <ion-button type="submit"  [disabled]="form.invalid" expand="block" style="width: 150px;">
+        Actualizar
+      </ion-button>
+      
+    </div>
+  </form>
+
+</ion-content>
+<style>
+  #myFileInput{
+    position: absolute;
+    opacity: 0;
+  }
+</style>

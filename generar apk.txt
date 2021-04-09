@@ -1,0 +1,10 @@
+1)ionic cordova build --release --prod android
+2)keytool -genkey -v -keystore ml2_app -alias ml2 -keyalg RSA -keysize 2048 -validity 10000
+2.1)keytool -importkeystore -srckeystore Tasky_app -destkeystore Tasky_app -deststoretype pkcs12
+3)jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore Tasky_app platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk Tasky
+4)C:\Users\anava\AppData\Local\Android\Sdk\build-tools\30.0.3\zipalign -v 4 platforms\android\app\build\outputs\apk\debug\tasky.apk taskyAPP.apk
+5) clave de tasky tasky2021
+
+
+keytool -genkey -v -keystore ml2.keystore -alias ml2 -keyalg RSA -keysize 2048 -validity 10000
+C:\Users\anava\AppData\Local\Android\Sdk\build-tools\30.0.3\zipalign -v 4 platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk ml2.apk

@@ -1,0 +1,144 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-card>
+    <!-- <ion-list>
+      <ion-img src="../../assets/log.png"></ion-img>
+    </ion-list> -->
+    <div align="center" style="margin-top:15px">
+      <label style="font-size: 31px;">Registro</label>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="RegistrarUser(form)" >
+      <ion-list>   
+          
+        <ion-item>
+          <ion-icon color="black" name="person-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" required placeholder="Nombre" name="nombre" type='text' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="black" name="person-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" required placeholder="Apellido" name="apellido" type='text' ngModel required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon color="black" name="mail-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" required placeholder="Correo" name="email" type='email' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="black" name="key-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" placeholder="Contraseña" name="password" type='password' ngModel minlength="6" required></ion-input>
+        </ion-item>
+        <div *ngIf="form.hasError('minlength', 'password')">
+          <span>La contraseña debe tener 6 al menos caracteres</span>
+        </div>
+        
+
+
+        <ion-item>
+          <ion-icon color="black" name="call-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" placeholder="WhatsApp" name="telefono" type='text' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="black" name="storefront-outline"></ion-icon>
+          <ion-label style = "margin-left: 6.5px;">Ciudadela: </ion-label>
+          <ion-select required  name='ciudadela' ngModel>
+           
+                  <ion-select-option value="Paraíso del Río 1">Paraíso del Río 1</ion-select-option>
+                  <ion-select-option value="Paraíso del Río 2">Paraíso del Río 2</ion-select-option> 
+                  <ion-select-option value="Toledo">Toledo</ion-select-option> 
+                  <ion-select-option value="Marbella">Marbella</ion-select-option> 
+                  <ion-select-option value="Victoria del Río">Victoria del Río</ion-select-option>
+                  <ion-select-option value="Salamanca">Salamanca</ion-select-option>
+                  <ion-select-option value="Victoria Club">Victoria Club</ion-select-option>
+                  <ion-select-option value="Plaza Victoria">Plaza Victoria</ion-select-option>
+                  <ion-select-option value="Valle Victoria">Valle Victoria</ion-select-option>
+                  <ion-select-option value="Alameda del Río">Alameda del Río</ion-select-option>
+
+          
+          </ion-select>
+  
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="black" name="trail-sign-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" placeholder="Manzana" name="manzana" type='text' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="black" name="bookmark-outline"></ion-icon>
+          <ion-input style = "margin-left: 6.5px;" placeholder="Villa" name="villa" type='text' ngModel required></ion-input>
+        </ion-item>
+
+
+
+
+        
+        
+        
+        
+
+          <ion-item>
+            <ion-icon color="black" name="image-outline"></ion-icon> <ion-label style = "margin-left: 6.5px;">Foto de Perfil </ion-label>
+          
+            <ion-input type='file' accept="image/*" id="myFileInput" name="foto" (change)="readURL($event);" class="fileInput" ngModel required></ion-input>
+          </ion-item>
+
+
+          <!-- <ion-item>
+            <ion-label><ion-icon name="image-outline"></ion-icon> Seleccione su foto de perfil <ion-text color=""></ion-text></ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type='file' accept="image/*" id="perfilFoto" name="foto" (change)="readURL($event);" class="fileInput" ngModel required></ion-input>
+          </ion-item> -->
+          
+          
+          
+        
+
+
+      </ion-list> 
+      
+
+      <div class="ion-padding" align="center">
+        <ion-button type="submit"  style="width: 150px;" [disabled]="form.invalid" expand="block">
+          Registrar
+        </ion-button>
+        <p style="font-size: 15px;" routerLink="/login" routerDirection="root">Ya tengo cuenta</p>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
+
+<style>
+#myFileInput{
+  position: absolute;
+  opacity: 0;
+}
+  .perfil {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+  }
+  .item ion-thumbnail {
+    min-width: 10rem;    
+    min-height: 10rem;
+    /* img {
+      max-width: 10rem;    
+      min-width: 10rem;
+    }   */
+  }
+  ion-img {     
+      width: 60%;
+      margin: auto;
+      display: block;
+  }
+</style>

@@ -1,0 +1,42 @@
+
+<app-header nombre="categorias"></app-header>
+
+<ion-content>
+
+  <ion-segment color="tertiary" value="categorias">
+
+    
+
+    <ion-segment-button value="productos" [routerLink]="['/productos-todos']" >
+      <ion-icon name="gift-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Productos</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="categorias" [routerLink]="['/categorias']" >
+      <ion-icon name="list-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Categorias</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="servicios" [routerLink]="['/servicios']">
+      <ion-icon name="rocket-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Servicios</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar categoría..."
+    animated
+    (ionChange)="buscar($event)">
+  </ion-searchbar>
+
+  <ion-list *ngFor="let categoria of categorias | filtroCategoria: textoBuscar">
+    <ion-item [routerLink]="['/productos',categoria.id]">
+      <ion-icon name="{{categoria.Icono}}" slot="start" size='large'></ion-icon>
+      <ion-label style="font-size: 17.2px;">{{categoria.Nombre}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  
+
+
+</ion-content>

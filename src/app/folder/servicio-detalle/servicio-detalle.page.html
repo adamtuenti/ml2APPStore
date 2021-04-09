@@ -1,0 +1,61 @@
+<app-header nombre="categorias"></app-header>
+
+<ion-content>
+
+    
+
+            <ion-button  expand="full" href="{{servicio.Foto}}" color="light" style="height: 250px;width: 85%;margin:auto;margin-top:7.5px" fill="clear"><ion-img src="{{servicio.Foto}}" style="height: 275px;width: 100%;"></ion-img></ion-button>
+
+        
+        
+        
+  
+    
+
+     <ion-card>
+
+        <label style="margin: auto;display: block;font-size: 21.5px;font-weight: bold;color:black; align-items: center;text-align: center;margin-top: 7.5px;margin-bottom: 7.5px;">{{servicio.Titulo}}</label>
+
+      
+        <ng-container style="margin-bottom: 7.5px;">
+         
+          <ion-label style="font-size: 17.5px;margin-left: 7.5px;margin-top: 7px;">{{servicio.Descripcion}}</ion-label>
+        </ng-container>
+      
+
+        <!-- <ion-item>
+          <a href="mailto:{{user.Correo}}"><ion-icon name="mail-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+          <ion-label>{{user.Correo}}</ion-label>
+        </ion-item>    -->
+      </ion-card>
+
+
+    <ion-card style="margin-top:11.5px">
+
+      <label style="margin: auto;display: block;font-size: 17.5px;font-weight: bold;color:black; align-items: center;text-align: center;margin-top: 8.5px;">Contacto:</label>
+
+    
+      <ion-item>
+        <ion-icon name="person-outline" size="large" style="margin-right: 8px;" color="success"></ion-icon>
+        <ion-label style="font-size: 17px;">{{user.Nombre}} {{user.Apellido}}</ion-label>
+      </ion-item>
+    
+      <ion-item>
+        <a href= 'https://api.whatsapp.com/send?phone={{user.Telefono}}'><ion-icon name="logo-whatsapp" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+        <ion-label>{{user.Telefono}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <a href="mailto:{{user.Correo}}"><ion-icon name="mail-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+        <ion-label>{{user.Correo}}</ion-label>
+      </ion-item>
+      
+      <ion-item>
+        <ion-icon name="golf-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+        <ion-label>{{user.Ciudadela}} - Mz: {{user.Manzana}}   Villa: {{user.Villa}}</ion-label>
+      </ion-item> 
+
+  </ion-card>
+  
+
+</ion-content>

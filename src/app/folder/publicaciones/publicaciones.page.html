@@ -1,0 +1,72 @@
+<app-header nombre="publicaciones"></app-header>
+
+<ion-content>
+
+  <ion-slides pager="true" [options]="slideOpts" style="margin-top: 11.5px;">
+    <ion-slide style="height: 375px;width: 95%;" *ngFor="let publicidadDetalle of publicidad">
+      
+      <ion-content>
+        <ion-item>
+
+          <ion-button  expand="full" href="{{publicidadDetalle.Imagen}}" color="light" style="height: 300px;width: 100%;" fill="clear"><ion-img src="{{publicidadDetalle.Imagen}}" style="height: 100%;width: 100%;"></ion-img></ion-button>
+          <!-- <ion-img src="{{publicidadDetalle.Imagen}}" style="height: 275px;width: 100%;"></ion-img> -->
+
+        </ion-item>
+        <div style="margin:auto;">
+          <!-- <ion-button  expand="full"  expand="full" href="{{publicidadDetalle.Imagen}}" style="width: 50px;height: 50px;" color="light"><ion-icon name="expand-outline" size="large" ></ion-icon> </ion-button> -->
+          <a href= 'https://api.whatsapp.com/send?phone={{publicidadDetalle.Telefono}}'><ion-icon name="logo-whatsapp" size="large" color="success"></ion-icon></a>
+        </div>
+
+      </ion-content>
+      
+    </ion-slide>
+    <!-- <ion-slide *ngIf='publicidad.Imagen!=""' style="height: 325px;width: 85%;margin: auto">
+      <ion-button expand="full" href="{{publicidad.Imagen}}" color="light" style="height: 100%;width: 100%;" fill="clear"><ion-img src="{{publicidad.Imagen}}" style="height: 275px;width: 100%;"></ion-img></ion-button>
+    </ion-slide> -->
+    
+  </ion-slides>
+
+
+  <ion-list *ngFor="let publicacion of publicaciones">
+    <ion-card style="background-color: #ACC8FC" *ngIf = 'publicacion.Visibilidad'>
+
+        <ion-card-header (click)='aumentarVisitaPublicacion(publicacion.id,publicacion.Usuario,publicacion)'>
+          <ion-item>
+            <ion-card-title >
+              <label style='color:black;font-size: 17.2px;'>
+                {{publicacion.Titulo}}
+              </label>
+            </ion-card-title>  
+          </ion-item> 
+
+        </ion-card-header>
+
+        <ion-card-content (click)='aumentarVisitaPublicacion(publicacion.id,publicacion.Usuario,publicacion)'>
+          <label style='color:black;font-size: 15px;'>{{publicacion.Descripcion}}</label>
+          
+        </ion-card-content>
+
+        <ion-item>
+
+          <ion-icon *ngIf="publicacion.Usuario == idUser" name="trash-outline" slot='start' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+          <ion-item slot='end'>
+            
+            {{publicacion.Fecha | date:'yyyy/MM/dd'}}
+          </ion-item>
+
+        </ion-item>
+        
+        
+
+      
+    </ion-card>
+
+  </ion-list>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="validarPremium()">
+    <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

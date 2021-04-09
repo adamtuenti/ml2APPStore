@@ -1,0 +1,98 @@
+<app-header nombre="locales"></app-header>
+<ion-content>
+
+  <ion-segment color="tertiary" value="cartilla">
+
+    <ion-segment-button value="anuncios" [routerLink]="['/detalle-local',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="information-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Datos</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="cartilla" [routerLink]="['/productos-locales',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="book-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Cartilla</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="grupos" [routerLink]="['/comentarios-local',idLocal,idPropietario]" routerDirection="root">
+      <ion-icon name="chatbubbles-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Comentarios</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+
+  <form #form="ngForm" (ngSubmit)="crearProducto(form)">
+        <ion-list>  
+          
+          <ion-card style="margin-top:15px">
+            <ion-item>
+              <ion-label>Nombre</ion-label>
+            </ion-item>
+            <ion-item>
+            
+              <ion-input required placeholder="Ingrese el nombre del producto" name="titulo" type='text' ngModel required></ion-input>
+            </ion-item>
+  
+          </ion-card>
+        
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Precio </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese el precio del producto" name="precio" type='number' ngModel required></ion-textarea>
+          </ion-item>
+  
+  
+  
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+    
+            <ion-item>
+              <ion-icon name="image-outline"></ion-icon> <ion-text color="" style="margin-left: 7.5px;" *ngIf='image==null'>Subir foto del producto</ion-text> <ion-text color="" style="margin-left: 7.5px;" *ngIf='image!=null'>Cambiar foto del producto</ion-text>
+          
+              <ion-input type='file' accept="image/*" id="myFileInput" name="foto" (change)="readURL($event);" class="fileInput" ngModel></ion-input>
+    
+            </ion-item>
+    
+    
+            
+            
+          
+            
+    
+          </ion-item>
+    
+        </ion-card>
+        
+        <ion-card style="margin-top:15px" *ngIf='image!=null'>
+          <ion-item>
+
+            <ng-container>
+              <ion-img id="blah" [src]="image" alt="your image" style="margin-top:5px;margin-bottom: 5px;height: 250px;width: 250px;"></ion-img>
+
+            </ng-container>
+            
+    
+            
+          </ion-item>
+    
+        </ion-card>
+          
+
+  
+        
+        </ion-list>
+  
+          <ion-button  style="width: 150px;margin:auto;margin-bottom: 8.5px;" type="submit"  [disabled]="form.invalid" expand="block">
+            Guardar
+          </ion-button>
+      </form>
+  
+  </ion-content>
+  <style>
+  #myFileInput{
+    position: absolute;
+    opacity: 0;
+  }
+  </style>

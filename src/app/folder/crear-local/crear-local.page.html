@@ -1,0 +1,157 @@
+<app-header nombre="locales"></app-header>
+
+<ion-content>
+
+  <form #form="ngForm" (ngSubmit)="crearLocal(form)">
+        <ion-list>  
+          
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Nombre</ion-label>
+          </ion-item>
+          <ion-item>
+          
+            <ion-input required placeholder="Ingrese el nombre del local" name="nombre" type='text' ngModel required></ion-input>
+          </ion-item>
+
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+            <ion-item>
+              <ion-icon name="image-outline"></ion-icon> <ion-text color="" style="margin-left: 7.5px;" *ngIf='image==null'>Subir foto</ion-text> <ion-text color="" style="margin-left: 7.5px;" *ngIf='image!=null'>Cambiar foto</ion-text>
+          
+              <ion-input type='file' accept="image/*" id="myFileInput" name="foto1" (change)="readURL($event);" class="fileInput" ngModel required></ion-input>
+    
+            </ion-item>
+
+        </ion-card>
+        
+        <ion-card style="margin-top:15px" *ngIf='file!=null'>
+          <ion-item>
+
+            <ng-container>
+              <ion-img id="blah" [src]="image" alt="your image" style="margin-top:5px;margin-bottom: 5px;height: 250px;width: 250px;margin:auto;"></ion-img>
+
+            </ng-container>
+
+          </ion-item>
+    
+        </ion-card>
+
+        
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Descripción</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese una descripción del local" name="descripcion" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-icon color="black" name="storefront-outline"></ion-icon>
+            <ion-label style = "margin-left: 6.5px;">Ciudadela: </ion-label>
+            <ion-select required  name='ciudadela' ngModel>
+             
+                    <ion-select-option value="Paraíso del Río 1">Paraíso del Río 1</ion-select-option>
+                    <ion-select-option value="Paraíso del Río 2">Paraíso del Río 2</ion-select-option> 
+                    <ion-select-option value="Toledo">Toledo</ion-select-option>
+                    <ion-select-option value="Marbella">Marbella</ion-select-option> 
+                    <ion-select-option value="Victoria del Río">Victoria del Río</ion-select-option>
+                    <ion-select-option value="Salamanca">Salamanca</ion-select-option>
+                    <ion-select-option value="Victoria Club">Victoria Club</ion-select-option>
+                    <ion-select-option value="Plaza Victoria">Plaza Victoria</ion-select-option>
+                    <ion-select-option value="Valle Victoria">Valle Victoria</ion-select-option>
+                    <ion-select-option value="Alameda del Río">Alameda del Río</ion-select-option>
+  
+            
+            </ion-select>
+    
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Manzana </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese la manzana" name="manzana" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Villa</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese la Villa" name="villa" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Teléfono del local</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese el número de teléfono" name="telefono" type='number' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            
+            <ion-label>Red social</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese el link de su página de Facebook" name="redSocial" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-icon color="black" name="bicycle-outline"></ion-icon>
+            <ion-label style = "margin-left: 6.5px;">Entregas a domicilio: </ion-label>
+            <ion-select required  name='domicilio' ngModel>
+             
+                    <ion-select-option value="Si">Sí</ion-select-option>
+                    <ion-select-option value="No">No</ion-select-option> 
+
+            </ion-select>
+    
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Horario de atención</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Ingrese el Horario de atención" name="horarioAtencion" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+        <ion-card style="margin-top:15px">
+          <ion-item>
+            <ion-label>Referencia</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-textarea required placeholder="Referencia de la ubicación del local" name="referencia" type='text' ngModel required></ion-textarea>
+          </ion-item>
+        </ion-card>
+
+       
+               
+        </ion-list>
+  
+        <ion-button  style="width: 150px;margin:auto;margin-bottom: 8.5px;" type="submit"  [disabled]="form.invalid" expand="block">
+          Guardar
+        </ion-button>
+      </form>
+</ion-content>
+<style>
+  #myFileInput{
+    position: absolute;
+    opacity: 0;
+  }
+</style>

@@ -1,0 +1,143 @@
+<app-header nombre="locales"></app-header>
+
+<ion-content>
+
+  <ion-segment color="tertiary" value="informacion">
+
+    <ion-segment-button value="informacion" [routerLink]="['/detalle-local',idLocal, idPropietario]" routerDirection="root">
+      <ion-icon name="information-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Datos</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="cartilla" [routerLink]="['/productos-locales',idLocal, idPropietario]" routerDirection="root">
+      <ion-icon name="book-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Cartilla</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="grupos" [routerLink]="['/comentarios-local', idLocal, idPropietario]" routerDirection="root">
+      <ion-icon name="chatbubbles-outline" size="large"></ion-icon> <ion-label style="font-size: 11px;">Comentarios</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+  <div *ngIf = '!calificarBool'> 
+
+    <div style='margin:auto;margin-top: 10px;margin-bottom: 5px;' align='center' *ngIf = 'idPropietario != idUser && !calificarBool'>
+      <form #form="ngForm" (ngSubmit)="calificar(form)">
+        <p class="clasificacion">
+          <input id="radio1" type="radio" name="estrellas" value=5 ngModel required><!--
+          --><label class='estrellaLabel' for="radio1">★</label><!--
+          --><input id="radio2" type="radio" name="estrellas" value=4 ngModel required><!--
+          --><label class='estrellaLabel' for="radio2">★</label><!--
+          --><input id="radio3" type="radio" name="estrellas" value=3 ngModel required><!--
+          --><label class='estrellaLabel' for="radio3">★</label><!--
+          --><input id="radio4" type="radio" name="estrellas" value=2 ngModel required><!--
+          --><label class='estrellaLabel' for="radio4">★</label><!--
+          --><input id="radio5" type="radio" name="estrellas" value=1 ngModel required><!--
+          --><label class='estrellaLabel' for="radio5">★</label>
+        </p>
+  
+        <ion-button style="width: 100px;margin:auto;margin-bottom: 8.5px;" type="submit"  [disabled]="form.invalid" expand="block">
+          Calificar
+        </ion-button>
+      </form>
+    </div>
+
+  </div>
+
+  
+
+  <div *ngIf = 'calificarBool'>
+
+    <div *ngIf = 'idPropietario != idUser && calificarBool' style='margin:auto;margin-top: 12.5px;margin-bottom: 7.5px;' align='center' >
+      <div align='center' style='border-radius: 1px;border-color: black;'>
+        <ion-label style='font-size: 18.2px;margin-bottom: 7.5px;'>Tu calificación al local fue:</ion-label>
+        <br/>
+        <label *ngFor = 'let indice of [].constructor(valor); let i = index'>
+          <ion-icon name="star" color = 'warning' size='large'></ion-icon>
+        </label>
+  
+      </div>
+      
+  
+    </div>
+
+  </div>
+  
+
+
+
+  <ion-img class="circle-pic" style="width: 275px;height: 275px;margin:auto;" src="{{local.Foto}}" ></ion-img>
+
+  <ion-card>
+    <ion-item>
+      <label style="margin: auto;display: block;font-size: 25px;font-weight: bold;color:black; align-items: center;text-align: center;margin-top: 7.5px;">{{local.Nombre}}</label>
+    </ion-item>
+    <div style='margin-top: 5px;padding: 10px;'>
+     
+      <ion-label style="font-size: 17.5px;text-align: center;margin-top: 5px;margin-right: 5px;">{{local.Descripcion}}</ion-label>
+    </div>
+
+    <ion-item *ngIf="idPropietario == idUser">
+      <ion-icon slot='end' name="create-outline" size ='large' color='success' [routerLink]="['/editar-local',idLocal,idPropietario]"></ion-icon>
+
+    </ion-item>
+
+    
+
+  
+  </ion-card>
+
+
+    <ion-card>
+      
+      
+
+
+      <ion-item>
+        <a href= 'https://api.whatsapp.com/send?phone={{local.Telefono}}'><ion-icon name="logo-whatsapp" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+        <ion-label>{{local.Telefono}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="bicycle-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+        <ion-label>{{local.Domicilio}}</ion-label>
+      </ion-item> 
+
+      <ion-item *ngIf='local.RedSocial != ""'>
+        <a href= '{{local.RedSocial}}'><ion-icon name="logo-facebook" size="large" color="primary" style="margin-right: 8px;"></ion-icon></a>
+        <ion-label>{{local.RedSocial}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="golf-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+        <ion-label>{{local.Ciudadela}} - Mz: {{local.Manzana}}   Villa: {{local.Villa}}</ion-label>
+      </ion-item>
+      
+      <ion-item *ngIf='local.Referencia != ""'>
+        <ion-icon name="search-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+        <ion-label>{{local.Referencia}}</ion-label>
+      </ion-item>
+
+      <ng-container>
+        <ion-item>
+          <ion-icon name="calendar-number-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+          <ion-label>Horario de atención</ion-label>
+
+        </ion-item>
+        <div style='margin-top: 5px;padding: 10px;'>
+          <ion-label style='font-size: 15px;text-align: center;'>
+            {{local.HorarioAtencion}}
+          </ion-label>
+        </div>
+      </ng-container>
+
+
+      <!-- <ion-item>
+        <ion-icon routerLink="/perfil-update" name="create-outline" size="large" style="margin-right: 8px;" layout="icon-end" slot="end"></ion-icon>
+
+      </ion-item> -->
+    
+    </ion-card>
+
+
+
+</ion-content>

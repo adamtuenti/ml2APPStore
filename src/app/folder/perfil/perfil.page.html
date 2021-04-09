@@ -1,0 +1,135 @@
+<app-header nombre="perfil"></app-header>
+
+<ion-content>
+  
+  <ion-img class="circle-pic" style="width: 275px;height: 275px;" src="{{user.Foto}}" ></ion-img>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="person-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{user.Nombre}} {{user.Apellido}}</ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-icon name="mail-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{user.Correo}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="call-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{user.Telefono}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="megaphone-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{user.Publicaciones}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="cart-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{user.Productos}}</ion-label>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-icon name="diamond-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">{{premium}}</ion-label>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-icon routerLink="/perfil-update" name="create-outline" size="large" style="margin-right: 8px;" layout="icon-end" slot="end"></ion-icon>
+
+    </ion-item>
+  
+  </ion-card>
+
+
+  <ion-item *ngIf = '!user.Vendedor && !user.Verificacion' style="margin-top: 25px;margin-bottom: 10px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="success" (click)="serVendedor()">
+      <ion-icon name="hand-left-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Ser vendedor</ion-label>
+    </ion-button>
+  </ion-item>
+
+  
+
+
+
+  <ion-item *ngIf = '!user.Vendedor && user.Verificacion' style="margin-top: 25px;margin-bottom: 10px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="warning" (click)="esperaVendedor()">
+      <ion-icon name="hand-left-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 11px;">En espera (vendedor)</ion-label>
+    </ion-button>
+  </ion-item>
+
+  <ion-item *ngIf = '!user.Premium' style="margin-top: 15px;margin-bottom: 10px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="success" (click)="serPremium()">
+      <ion-icon name="diamond-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Ser premium</ion-label>
+    </ion-button>
+  </ion-item>
+
+
+  <ion-item *ngIf = 'user.Vendedor' style="margin-top: 22px;margin-bottom: 10px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="success" [routerLink]="['/mis-publicaciones']">
+      <ion-icon name="megaphone-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Mis anuncios</ion-label>
+    </ion-button>
+
+  </ion-item>
+
+  <ion-item *ngIf = 'user.Vendedor' style="margin-top: 15px;margin-bottom: 10px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="success" [routerLink]="['/mis-servicios']">
+      <ion-icon name="rocket-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Mis servicios</ion-label>
+    </ion-button>
+
+  </ion-item>
+
+
+  <ion-item *ngIf = 'user.Vendedor' style="margin-top: 15px;margin-bottom: 15px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="success" [routerLink]="['/mis-productos']">
+      <ion-icon name="bag-check-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Mis productos</ion-label>
+    </ion-button>
+
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;margin-bottom: 25px;">
+    <ion-button style="width: 225px;height: 45px;margin-top:12.5px;margin:auto;" color="danger" (click)="logOutUser()">
+      <ion-icon name="log-out-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Cerrar Sesión</ion-label>
+    </ion-button>
+
+  </ion-item>
+
+  
+
+    
+
+
+  
+  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="crearSugerencia()">
+     <ion-icon name="help-circle-outline" size="large"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+<style>
+  .circle-pic {     
+    width: 55%;
+    height: 35%;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    /* -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border-width: 50px; */
+
+  }
+</style>

@@ -1,0 +1,60 @@
+<app-header nombre="perfil"></app-header>
+
+<ion-content>
+
+
+  <ng-container *ngIf="!condicion">
+    <ng-container *ngFor="let servicio of servicios">
+
+      <ion-card *ngIf="servicio.Usuario == idUser">
+
+        <ion-item [routerLink]="['/servicio-detalle',servicio.id, servicio.Usuario]">
+
+
+          <ion-avatar slot="start" style="height: 50px;width: 50px;margin-right: 7.5px;">
+            <img src="{{servicio.Foto}}">
+          </ion-avatar>
+  
+          <ion-label style="font-size: 17.2px; margin-left: 7.5px;">{{servicio.Titulo}}</ion-label>
+  
+          
+
+  
+          
+        
+        </ion-item>
+        <ion-item>
+          <ion-button fill="outline" slot='end'><ion-icon name="eye-outline"></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{servicio.Visitas}}</label></ion-button>
+          <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(servicio.id)"></ion-icon>
+
+        </ion-item>
+
+
+      </ion-card>
+
+      
+    </ng-container>
+
+  </ng-container>
+
+  <ng-container *ngIf="condicion">
+
+    <div style="margin-top: 50px;" align='center'> 
+      <ion-text color="medium">
+
+        <img src="https://firebasestorage.googleapis.com/v0/b/taskyapp01.appspot.com/o/iconos%2Fgrupos.png?alt=media&token=8aa84d63-18b5-424d-9b6a-dfd1075eeb77" style="width: 55%; height:58%;margin:auto;" alet="foto">
+        
+        <p style="font-size: 21px;margin:auto;margin-top:7.5px">No hay productos registrados.</p>
+      </ion-text>  
+    </div>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/crear-servicio']">
+    <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+</ion-content>

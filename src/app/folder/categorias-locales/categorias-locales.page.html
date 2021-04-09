@@ -1,0 +1,29 @@
+<app-header nombre="locales"></app-header>
+
+<ion-content>
+
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar categoría..."
+    animated
+    (ionChange)="buscar($event)">
+  </ion-searchbar>
+
+  <ion-list *ngFor="let categoria of categorias | filtroCategoriaLocal: textoBuscar">
+
+    <ion-item [routerLink]="['/locales',categoria.id]">
+
+      <ion-icon name="{{categoria.Icono}}" slot="start" size='large'></ion-icon>
+      <ion-label style="font-size: 17.2px;">{{categoria.Nombre}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="crearLocal()">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+ 
+</ion-content>
